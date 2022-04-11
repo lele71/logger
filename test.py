@@ -14,6 +14,7 @@ def main():
     print("Filtri disponibiuli: %s"%str(myLog.getAvailableFilter()))
     print("----------------------------------------------------------------")
     '''
+    '''
     # Test addFilter
     print("Aggiungo filtri corretti:\n")
     if myLog.addFilter([20,"WARNING"]):
@@ -36,7 +37,7 @@ def main():
         print("Livelli filtro: %s"%str(myLog.getFilter()))
         print("----------------------------------------------------------------")
     
-    '''
+
     print("Aggiungo filtri errati interi:\n")
     if myLog.addFilter([20,0,25,[12]]):
         print("Filtri aggiunti correttamente")
@@ -56,14 +57,17 @@ def main():
         print("----------------------------------------------------------------")
     print("Loggo errore:\n")
     '''
-    myLog.addFilter([20])
-    if myLog.log(30,"messaggio"):
-        print("log ok")
-        print("----------------------------------------------------------------")
+    #myLog.addFilter([20])
+    if myLog.log(500,"messaggio"):
+        myLog.log(100,"log ok")
+        #print("log ok")
+        #print("----------------------------------------------------------------")
     else:
-        print("Errore log")
-        print(myLog.getLastError())
-        print("----------------------------------------------------------------")
+        myLog.log(100,"Errore log")
+        myLog.log(100,myLog.getLastError())
+        #print("Errore log")
+        #print(myLog.getLastError())
+        #print("----------------------------------------------------------------")
 
 
 if __name__ == '__main__':

@@ -29,19 +29,19 @@ class Logger:
         return nowString
     
     # private method to write to file or stdout
-    def __writeLog(self, message):
-        f = "%s%s-%s.log"%(self.position, self.__date(), self.appName)
-        try:
-            ff = open(f, "a")
-            ff.write("%s\n"%message)
-            ff.close
-        except Exception as e:
-            self.lastError = e
-            return False
+    def __writeLog(self, message, tipo):
+        if tipo == 'p':
+            print("logger ---> %s"%message)
+        else:
+            f = "%s%s-%s.log"%(self.position, self.__date(), self.appName)
+            try:
+                ff = open(f, "a")
+                ff.write("%s\n"%message)
+                ff.close
+            except Exception as e:
+                self.lastError = e
+                return False
         return True
-        
-        print("Filename: %s"%f)
-        print(message)
         
     # Return the last error    
     def getLastError(self):
@@ -159,8 +159,13 @@ class Logger:
                         now = timestamp
                     else:
                         now = self.__datetime()
-                    message = "%s from %s <%s> %s"%(now, self.appName, levelTxt, msg)
-                    if not self.__writeLog(message):
+                    tipo = 'log'
+                    if level == 100:
+                        message = msg
+                        tipo = 'p'
+                    else:
+                        message = "%s from %s <%s> %s"%(now, self.appName, levelTxt, msg)
+                    if not self.__writeLog(message, tipo):
                         return False    
                 else:
                     # log filtered for now only pass
@@ -176,7 +181,6 @@ class Logger:
                 if level.upper() == self.availableFilter[j]:
                     # exist in available filter
                     filterExist = True
-                    print("TROVATO")
                     # check if is filtered
                     if level not in self.currentFilter:
                         # level not filtered write log
@@ -185,8 +189,13 @@ class Logger:
                             now = timestamp
                         else:
                             now = self.__datetime()
-                        message = "%s from %s <%s> %s"%(now, self.appName, level.upper(), msg)
-                        if not self.__writeLog(message):
+                        tipo = 'log'
+                        if level == 'TOSTDOUT':
+                            message = msg
+                            tipo = 'p'
+                        else:
+                            message = "%s from %s <%s> %s"%(now, self.appName, level.upper(), msg)
+                        if not self.__writeLog(message, tipo):
                             return False
                     else:
                         # log filtered for now only pass

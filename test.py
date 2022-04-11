@@ -58,7 +58,7 @@ def main():
     print("Loggo errore:\n")
     '''
     #myLog.addFilter([20])
-    if myLog.log(500,"messaggio"):
+    if myLog.log("ERROR","messaggio", istanza="pippo"):
         myLog.log(100,"log ok")
         #print("log ok")
         #print("----------------------------------------------------------------")

@@ -142,7 +142,7 @@ class Logger:
                 return False
         return True
     
-    def log(self, level, msg, timestamp="None"):
+    def log(self, level, msg, timestamp="None", istanza = 'default'):
         error = False
         # check if log is filtred
         # case level is int
@@ -164,7 +164,10 @@ class Logger:
                         message = msg
                         tipo = 'p'
                     else:
-                        message = "%s from %s <%s> %s"%(now, self.appName, levelTxt, msg)
+                        if istanza == 'default':
+                            message = "%s from %s <%s> %s"%(now, self.appName, levelTxt, msg)
+                        else:
+                            message = "%s from %s <%s> %s"%(now, istanza, levelTxt, msg)
                     if not self.__writeLog(message, tipo):
                         return False    
                 else:
@@ -194,7 +197,10 @@ class Logger:
                             message = msg
                             tipo = 'p'
                         else:
-                            message = "%s from %s <%s> %s"%(now, self.appName, level.upper(), msg)
+                            if istanza == 'default':
+                                message = "%s from %s <%s> %s"%(now, self.appName, level, msg)
+                            else:
+                                message = "%s from %s <%s> %s"%(now, istanza, level, msg)
                         if not self.__writeLog(message, tipo):
                             return False
                     else:

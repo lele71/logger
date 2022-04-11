@@ -1,7 +1,7 @@
 from logger import Logger
 
 def main():
-    myLog = Logger("position", "test")
+    myLog = Logger("etc/", "test")
     
     '''
     # Test getLastError

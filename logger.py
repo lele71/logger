@@ -18,10 +18,29 @@ class Logger:
     def __datetime(self):
         from datetime import datetime
         now = datetime.now()
-        nowString = now.strftime("%y-%m-%d %H:%M:%s")
+        nowString = now.strftime("%Y-%m-%d %H:%M:%S.%f")
         return nowString
+    
+    # private get datetine like string
+    def __date(self):
+        from datetime import datetime
+        now = datetime.now()
+        nowString = now.strftime("%Y-%m-%d")
+        return nowString
+    
     # private method to write to file or stdout
     def __writeLog(self, message):
+        f = "%s%s-%s.log"%(self.position, self.__date(), self.appName)
+        try:
+            ff = open(f, "a")
+            ff.write("%s\n"%message)
+            ff.close
+        except Exception as e:
+            self.lastError = e
+            return False
+        return True
+        
+        print("Filename: %s"%f)
         print(message)
         
     # Return the last error    
@@ -141,7 +160,8 @@ class Logger:
                     else:
                         now = self.__datetime()
                     message = "%s from %s <%s> %s"%(now, self.appName, levelTxt, msg)
-                    self.__writeLog(message)    
+                    if not self.__writeLog(message):
+                        return False    
                 else:
                     # log filtered for now only pass
                     pass
@@ -166,7 +186,8 @@ class Logger:
                         else:
                             now = self.__datetime()
                         message = "%s from %s <%s> %s"%(now, self.appName, level.upper(), msg)
-                        self.__writeLog(message)
+                        if not self.__writeLog(message):
+                            return False
                     else:
                         # log filtered for now only pass
                         pass 

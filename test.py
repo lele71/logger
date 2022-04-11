@@ -26,7 +26,7 @@ def main():
         print("----------------------------------------------------------------")
     
     # Test delete filters
-    if myLog.removeFilter([20, 30]):
+    if myLog.removeFilter([20, "WARNING"]):
         print("Filtri rimossi correttamente")
         print("Livelli filtro: %s"%str(myLog.getFilter()))
         print("----------------------------------------------------------------")

@@ -93,11 +93,34 @@ class Logger:
                 except:
                     self.lastError += "%s not in available filter\n"%str(filter)
                     return False
-                # delete fron list
+                # delete from list
                 try:
                     self.currentFilter.remove(filter)
                 except:
                     self.lastError += "%s not in filter list\n"%str(filter)
+            elif type(filter) == str:
+                # filter is string
+                # try to get filter code
+                filterCode = -1
+                for j in self.availableFilter:
+                    # check if in available filter
+                    if filter.upper() == self.availableFilter[j]:
+                        filterCode = j
+                if filterCode == -1:
+                    # not find in availableFilter
+                    self.lastError += "%s not in available filter\n"%str(filter)
+                    return False
+                # here I find a correct code
+                # delete from list
+                try:
+                    self.currentFilter.remove(filterCode)
+                except:
+                    self.lastError += "%s not in filter list\n"%str(filter)
+                    return False
+            else:
+                # not int or str error
+                self.lastError += "%s not correct format\n"%str(filter)
+                return False
         return True
     
     def log(self, level, msg, timestamp="None"):

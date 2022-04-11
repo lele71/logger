@@ -13,6 +13,7 @@ def main():
     # Test getAvailableFilter
     print("Filtri disponibiuli: %s"%str(myLog.getAvailableFilter()))
     print("----------------------------------------------------------------")
+    '''
     # Test addFilter
     print("Aggiungo filtri corretti:\n")
     if myLog.addFilter([20,"WARNING"]):
@@ -23,6 +24,19 @@ def main():
         print("Errore aggiunta filtri")
         print(myLog.getLastError())
         print("----------------------------------------------------------------")
+    
+    # Test delete filters
+    if myLog.removeFilter([20, 30]):
+        print("Filtri rimossi correttamente")
+        print("Livelli filtro: %s"%str(myLog.getFilter()))
+        print("----------------------------------------------------------------")
+    else:
+        print("Errore rimozione filtri")
+        print(myLog.getLastError())
+        print("Livelli filtro: %s"%str(myLog.getFilter()))
+        print("----------------------------------------------------------------")
+    
+    '''
     print("Aggiungo filtri errati interi:\n")
     if myLog.addFilter([20,0,25,[12]]):
         print("Filtri aggiunti correttamente")

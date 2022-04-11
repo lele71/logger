@@ -83,6 +83,23 @@ class Logger:
                 error = True
         return not error
     
+    def removeFilter(self, filters):
+        for filter in filters:
+            # filter is int
+            if type(filter) == int:
+                # check if is in availableFilter
+                try:
+                    text = self.availableFilter[filter]
+                except:
+                    self.lastError += "%s not in available filter\n"%str(filter)
+                    return False
+                # delete fron list
+                try:
+                    self.currentFilter.remove(filter)
+                except:
+                    self.lastError += "%s not in filter list\n"%str(filter)
+        return True
+    
     def log(self, level, msg, timestamp="None"):
         error = False
         # check if log is filtred

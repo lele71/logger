@@ -8,14 +8,10 @@ By default it logs any message, to filter messages use the addFilter () method, 
 
 **Instance:**
 
-`	`*logger(position, appName)*
-
+- *logger(position, appName)*
 Where:
-
-`	`position: is the relative path for log file
-
-`	`appName i the name of the application name will compose the log file name
-
+  position: is the relative path for log file
+  appName i the name of the application name will compose the log file name
 
 
 **Log level:**
@@ -77,13 +73,16 @@ Where:
     False if something went wrong.
   If it returns false, it stores the error that can be requested with getLastError ()
 
-- *str getLastError():*
+- *str getLastError()*:
+  
   Return a string with the last error
 
-- *list getFilter():*
+- *list getFilter()*:
+  
   Return a list with the active filters
 
-- *dict getAvailableFilter():*
+- *dict getAvailableFilter()*:
+  
   Return a dictionary with the available filters.
 
 

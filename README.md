@@ -95,5 +95,7 @@ Where:
   Return a dictionary with the available filters.
 
 
+If you found my humble work useful and want to offer me a coffee, thank you in advance.
+
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/sartorigabriele?country.x=IT&locale.x=it_IT
 )

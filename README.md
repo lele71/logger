@@ -8,7 +8,8 @@ By default it logs any message, to filter messages use the addFilter () method, 
 
 **Instance:**
 
-- *logger(position, appName)*
+- **logger(position, appName)**:
+  
 Where:
   position: is the relative path for log file
   appName i the name of the application name will compose the log file name
@@ -17,18 +18,26 @@ Where:
 **Log level:**
 
 {
+
   0: 'NOSET',
+
   10: 'DEBUG',
+
   20: 'INFO',
+
   30: 'WARNING',
+
   40: 'ERROR',
+
   50: 'CRITICAL',
+
   100: 'TOSTDOUT'
+
 }
 
 **Public methods:**
 
-- *bool log(level, msg, timestamp = ‘None’, istanza=’default’*):
+- **bool log(level, msg, timestamp = ‘None’, istanza=’default’):**
 
   logs a message with specified level. Level can be either an int that represents the code or a string with the level (regardless of the upper or lower case), anything else generates an error and a False return with the message “Level not correct”.
   If a timestamp is also passed, this will be the one written in the file, otherwise the timestamp will be generated during the writing phase, be careful if the log message is not immediately written for any reason, the timastamp of the event and the one reported in the log may be different.
@@ -41,7 +50,7 @@ Where:
     False if something went wrong. 
   If it returns false, it stores the error that can be requested with getLastError ()
 
-- *bool addFilter(filter[])*:
+- **bool addFilter(filter[]):**
 
   adds one or more filters. 
   Both int and strings can be used, even mixed. 
@@ -57,7 +66,7 @@ Where:
     False if something went wrong.
   If it returns false, it stores the error that can be requested with getLastError ()
 
-- *bool removeFilter(filter[])*:
+- **bool removeFilter(filter[]):**
 
   removes one or more filters. 
   Both int and strings can be used, even mixed. 
@@ -73,15 +82,15 @@ Where:
     False if something went wrong.
   If it returns false, it stores the error that can be requested with getLastError ()
 
-- *str getLastError()*:
+- **str getLastError():**
   
   Return a string with the last error
 
-- *list getFilter()*:
+- **list getFilter()**:
   
   Return a list with the active filters
 
-- *dict getAvailableFilter()*:
+- **dict getAvailableFilter()**:
   
   Return a dictionary with the available filters.
 

@@ -22,25 +22,25 @@ Where:
 
 {
 
-`            `0: 'NOSET',
+0: 'NOSET',
 
-`            `10: 'DEBUG',
+``10: 'DEBUG',
 
-`            `20: 'INFO',
+``20: 'INFO',
 
-`            `30: 'WARNING',
+``30: 'WARNING',
 
-`            `40: 'ERROR',
+``40: 'ERROR',
 
-`            `50: 'CRITICAL',
+``50: 'CRITICAL',
 
-`            `100: 'TOSTDOUT'
+``100: 'TOSTDOUT'
 
 }
 
 **Public methods:**
 
-*bool log(level, msg, timestamp = ‘None’, istanza=’default’*):
+- *bool log(level, msg, timestamp = ‘None’, istanza=’default’*):
 
 logs a message with specified level. Level can be either an int that represents the code or a string with the level (regardless of the upper or lower case), anything else generates an error and a False return with the message “Level not correct”.
 
@@ -65,23 +65,23 @@ If it returns false, it stores the error that can be requested with getLastError
   If an int or string is not recognized, a False return is generated with the error message “Level% s not correct”, the correct levels are applied instead. 
   Capitalization is not relevant.
 
-`	`Usage:
+Usage:
 
-`	`addFilter ([20,10])
+addFilter ([20,10])
 
-`	`addFilter ([10, "info"])
+addFilter ([10, "info"])
 
-`	`addFilter (["debug", "INFO"])
+addFilter (["debug", "INFO"])
 
-`	`Calls to log () with filter = a 20 or 10 will not produce any logs.
+Calls to log () with filter = a 20 or 10 will not produce any logs.
 
-`	`Return:
+Return:
 
-`	`True if all went well
+True if all went well
 
-`	`False if something went wrong.
+False if something went wrong.
 
-`	`If it returns false, it stores the error that can be requested with getLastError ()
+If it returns false, it stores the error that can be requested with getLastError ()
 
 - *bool removeFilter(filter[])*:
 
@@ -90,23 +90,23 @@ If it returns false, it stores the error that can be requested with getLastError
   If an int or string is not recognized, a False return is generated with the error message “Level% s not correct”, the correct levels are applied instead. 
   Capitalization is not relevant.
 
-`	`Usage:
+Usage:
 
-`	`removeFilter ([20,10])
+removeFilter ([20,10])
 
-`	`removeFilter ([10, "info"])
+removeFilter ([10, "info"])
 
-`	`removeFilter (["debug", "INFO"])
+removeFilter (["debug", "INFO"])
 
-`	`Calls to log () with filter = 20 or 10 will now produce logs provided they were first placed 	in an addFilter () call, otherwise everything will remain unchanged.
+Calls to log () with filter = 20 or 10 will now produce logs provided they were first placed 	in an addFilter () call, otherwise everything will remain unchanged.
 
-`	`Return:
+Return:
 
-`	`True if all went well
+True if all went well
 
-`	`False if something went wrong.
+False if something went wrong.
 
-`	`If it returns false, it stores the error that can be requested with getLastError ()
+If it returns false, it stores the error that can be requested with getLastError ()
 
 - *str getLastError():*
 

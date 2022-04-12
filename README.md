@@ -1,70 +1,124 @@
 ﻿**Class Logger**
 
-Produce un file di log, nella posizione specificata in fase di istanza, nel formato:
+Produces a log file, in the location specified at instance time, in the format:
 
-aaaammgg-nome\_app.log, nome\_app è passato in fase di istanza tipicamente è il nome dell’applicazione che genera il log.
+yyyymmdd-app\_name.log, app\_name passed in the instance phase typically is the name of the application that generates the log.
 
-Di default logga qualsiasi messaggio, per filtrare i messaggi usare il metodo addFilter(), mentre per rimuovere filtri usare il metodo removeFilter().
+By default it logs any message, to filter messages use the addFilter () method, while to remove filters use the removeFilter () method.
 
-**Istanza:**
+**Instance:**
 
-logger(position, appName, level=’noset’)
+`	`*logger(position, appName)*
 
+Where:
 
+`	`position: is the relative path for log file
 
-**Livelli di log:**
-
-
-
-|**Level**|**Numeric value**|
-| :- | :- |
-|CRITICAL|50|
-|ERROR|40|
-|WARNING|30|
-|INFO|20|
-|DEBUG|10|
-|NOTSET|0|
+`	`appName i the name of the application name will compose the log file name
 
 
-***Metodi pubblici:***
 
-- *bool log(level, msg, timestamp = ‘None’*):
-  logga un messaggio **msg** a livello **level.** Level può essere indifferentemente un int che rappresenta il codice oppure una string con il livello (indifferente il maiuscolo o il minuscolo), qualsiasi altra cosa genera un errore ed un return False con messaggio “Level not correct”.**
-  Se viene passato anche un timestamp questo sarà quello scritto nel file, altrimenti il timestamp verrà generato in fase di scrittura, attenzione se il messaggio di log per qualsiasi motivo non viene scritto immediatamente il timastamp dell’evento e quello riportato a log potrebbero essere differenti.
-  Stringa prodotta:
-  aaa-mm-gg hh:mm:ss.ms appName <level> msg
-  Se level è presente in una chiamata di addFilter non verrà prodotto alcun log.
-  Ritorna:
-  True se tutto è andato a buon fine
-  False se qualcosa è andato storto.
-  Se ritorna false memorizza l’errore che può essere richiesto con getLastError()**
+**Log level:**
+
+{
+
+`            `0: 'NOSET',
+
+`            `10: 'DEBUG',
+
+`            `20: 'INFO',
+
+`            `30: 'WARNING',
+
+`            `40: 'ERROR',
+
+`            `50: 'CRITICAL',
+
+`            `100: 'TOSTDOUT'
+
+}
+
+**Public methods:**
+
+*bool log(level, msg, timestamp = ‘None’, istanza=’default’*):
+
+logs a message with specified level. Level can be either an int that represents the code or a string with the level (regardless of the upper or lower case), anything else generates an error and a False return with the message “Level not correct”.
+
+If a timestamp is also passed, this will be the one written in the file, otherwise the timestamp will be generated during the writing phase, be careful if the log message is not immediately written for any reason, the timastamp of the event and the one reported in the log may be different.
+
+If the instance is different from 'default' , the content of the instance is written instead of appName, .
+
+String produced:
+
+yyy-mm-dd hh: mm: ss.ms appName / instance <level> msg
+
+If level is present in an addFilter call no log will be produced.
+Return:
+True if all went well 
+False if something went wrong. 
+If it returns false, it stores the error that can be requested with getLastError ()
 
 - *bool addFilter(filter[])*:
-  aggiunge uno più filtri. Possono essere usati sia int che string anche misti. Se un int o una string non vengono riconosciuti si genera un return False con messaggio di errore “Level %s not correct”, i livelli corretti vengono invece applicati. La capitalizzazione non è rilevante.
-  Usage:
-  addFilter([20,10])
-  addFilter([10, “info”])
-  addFilter([“debug”,”INFO”])
-  Le chiamate a log() con filter = a 20 o 10 non produrranno alcun log.
-  Ritorna:
-  True se tutto è andato a buon fine
-  False se qualcosa è andato storto.
-  Se ritorna false memorizza l’errore che può essere richiesto con getLastError()
+
+  adds one or more filters. 
+  Both int and strings can be used, even mixed. 
+  If an int or string is not recognized, a False return is generated with the error message “Level% s not correct”, the correct levels are applied instead. 
+  Capitalization is not relevant.
+
+`	`Usage:
+
+`	`addFilter ([20,10])
+
+`	`addFilter ([10, "info"])
+
+`	`addFilter (["debug", "INFO"])
+
+`	`Calls to log () with filter = a 20 or 10 will not produce any logs.
+
+`	`Return:
+
+`	`True if all went well
+
+`	`False if something went wrong.
+
+`	`If it returns false, it stores the error that can be requested with getLastError ()
+
 - *bool removeFilter(filter[])*:
-  rimuove uno o più filtri. Possono essere usati sia int che string anche misti. Se un int o una string non vengono riconosciuti si genera un return False con messaggio di errore “Level %s not correct”, i livelli corretti vengono invece applicati. La capitalizzazione non è rilevante.
-  Usage:
-  removeFilter([20,10])
-  removeFilter([10, “info”])
-  removeFilter([“debug”,”INFO”])
-  Le chiamate a log() con filter = a 20 o 10 ora produrranno log sempre ammesso che fossero prima inserite in una chiamata di addFilter(), altrimenti tutto rimarrà invariato.
-  Ritorna:
-  True se tutto è andato a buon fine
-  False se qualcosa è andato storto.
-  Se ritorna false memorizza l’errore che può essere richiesto con getLastError()
+
+  removes one or more filters. 
+  Both int and strings can be used, even mixed. 
+  If an int or string is not recognized, a False return is generated with the error message “Level% s not correct”, the correct levels are applied instead. 
+  Capitalization is not relevant.
+
+`	`Usage:
+
+`	`removeFilter ([20,10])
+
+`	`removeFilter ([10, "info"])
+
+`	`removeFilter (["debug", "INFO"])
+
+`	`Calls to log () with filter = 20 or 10 will now produce logs provided they were first placed 	in an addFilter () call, otherwise everything will remain unchanged.
+
+`	`Return:
+
+`	`True if all went well
+
+`	`False if something went wrong.
+
+`	`If it returns false, it stores the error that can be requested with getLastError ()
+
 - *str getLastError():*
-  Restituisce l’ultimo errore occorso.
+
+  Return a string with the last error
 - *list getFilter():*
-  Restituisce i filtri attivi come array.
+
+  Return a list with the active filters
 - *dict getAvailableFilter():*
-  Restituisce l’elenco dei filtri disponibili codificati
+
+  Return a dictionary with the available filters.
+
+
+
+
 

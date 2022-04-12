@@ -95,7 +95,5 @@ Where:
   Return a dictionary with the available filters.
 
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](paypal.me/sartorigabriele)
-
-
-
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/sartorigabriele?country.x=IT&locale.x=it_IT
+)
